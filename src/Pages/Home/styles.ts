@@ -7,20 +7,28 @@ export const Container = styled.div`
     }
 
     figure{
-        picture{
-            img{
-                width: 300px;
-                height: 300px;
-                &:hover{
-                    width: 330px;
-                    height: 330px;
-                }
+        position: relative;
+        width: 421px;
+        height: 614px;
+        &:hover{
+            > figcaption{
+                display: block ;
             }
         }
         figcaption{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 20px 30px;
+            background: #000;
+            opacity: 0.7;
+            
             p{
                 color: white;
-                font-size: 14px;
+                font-size: 16px;
                 margin: 10px 0px;
             }
         }
