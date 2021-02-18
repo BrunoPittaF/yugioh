@@ -12,11 +12,13 @@ export const Container = styled.div`
         height: 614px;
         &:hover{
             > figcaption{
-                display: block ;
+                transform: scale3d(1, 1, 1);
+                visibility: visible;
+                background-color: rgba(0, 0, 0, 1);
+                opacity: 0.8;
             }
         }
         figcaption{
-            display: none;
             position: absolute;
             top: 0;
             left: 0;
@@ -24,12 +26,15 @@ export const Container = styled.div`
             bottom: 0;
             padding: 20px 30px;
             background: #000;
-            opacity: 0.7;
-            
+            opacity: 0;
+            visibility: hidden;
+            transform-origin: top center;
+            transform: scale3d(1, 0, 1);
+            transition: 1s;
             p{
                 color: white;
                 font-size: 16px;
-                margin: 10px 0px;
+                margin: 90px 0px 0px 0px;
             }
         }
     }

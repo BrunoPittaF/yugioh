@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       <figure>
         <picture>
           {
-            randomCard?.card_images.map((image, small) => {
+            randomCard?.card_images.map(image => {
               return (
                 <img src={image.image_url} alt="" />
               )
