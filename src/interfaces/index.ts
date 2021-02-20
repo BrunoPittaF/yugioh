@@ -9,11 +9,14 @@ export interface IrandomCard{
 }
 
 export interface Icard{
+    id: number,
     name: string,
     type: string,
     desc: string,
     level: number,
+    archetype: string,
     card_images: Array<{
+        id: number,
         image_url: string,
         image_url_small: string
     }>,

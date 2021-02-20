@@ -13,9 +13,9 @@ const Search: React.FC = () => {
     (async () => {
       try {
         const response = await cardService.search(cardName);
-        setCards(response.data.items);
-        console.log(setCards(response));
-        
+        console.log(response.data.data);        
+        setCards(response.data.data); 
+               
       } catch (error) {
         console.log(error);
       }
@@ -44,21 +44,22 @@ const Search: React.FC = () => {
       </form>
 
       <div className="grid">
-        {/* {cards.map((card) => (
-          <figure>
+        {cards.map((card) => (
+          <figure key={card.id}>
             <picture>
-              <img
-                src="https://i.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI"
-                alt=""
-              />
+              {
+                card.card_images.map(image => (
+                  <img src={image.image_url} alt="" key={image.id}/>
+                ))
+              }
             </picture>
             <figcaption>
-              <div key={card.level}>
+              <div>
                 <p>{card.desc}</p>
               </div>
             </figcaption>
           </figure>
-        ))} */}
+        ))}
       </div>
     </Container>
   );

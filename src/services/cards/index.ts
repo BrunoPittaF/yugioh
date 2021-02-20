@@ -5,7 +5,7 @@ export const cardService = {
     try {
       const response = await api.get("/cardinfo.php", {
         params: {
-          fname: name,
+          archetype: name,
         },
       });
       return response;

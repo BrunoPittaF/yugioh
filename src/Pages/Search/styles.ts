@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
     h1{
         color: #fff;
+        text-align: center;
+        margin: 20px 0px;
     }
 
     form{
