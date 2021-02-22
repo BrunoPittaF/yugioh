@@ -12,7 +12,7 @@ const Search: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await cardService.search(cardName);
+        const response = await cardService.search(cardName);      
         console.log(response.data.data);        
         setCards(response.data.data); 
                
@@ -33,7 +33,7 @@ const Search: React.FC = () => {
 
   return (
     <Container>
-      <h1>Tela de Search</h1>
+      <h1>Pesquise aqui as cartas do seu arquétipo</h1>
       <form onSubmit={handleFormSubmit}>
         <input
           type="text"
