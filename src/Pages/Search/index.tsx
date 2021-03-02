@@ -7,25 +7,26 @@ import { Icard } from "../../interfaces";
 const Search: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [cards, setCards] = useState<Icard[]>([]);
-  const [cardName, setCardName] = useState<string>("");
+  const [archetype, setArchetype] = useState<string>("");
+  const [cardName, setCardname] = useState<string>("");
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await cardService.search(cardName);      
-        console.log(response.data.data);        
-        setCards(response.data.data); 
-               
+        const response = await cardService.search(archetype && cardName);
+        console.log(response.data.data);
+        setCards(response.data.data);
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [cardName]);
+  }, [archetype, cardName]);
 
   async function handleFormSubmit(event: FormEvent): Promise<void> {
     try {
       event.preventDefault();
-      setCardName(search);
+      setArchetype(search);
+      setCardname(search);
     } catch (error) {
       console.log(error);
     }
@@ -47,11 +48,9 @@ const Search: React.FC = () => {
         {cards.map((card) => (
           <figure key={card.id}>
             <picture>
-              {
-                card.card_images.map(image => (
-                  <img src={image.image_url} alt="" key={image.id}/>
-                ))
-              }
+              {card.card_images.map((image) => (
+                <img src={image.image_url} alt="" key={image.id} />
+              ))}
             </picture>
             <figcaption>
               <div>
