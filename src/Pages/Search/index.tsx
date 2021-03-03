@@ -4,6 +4,13 @@ import { Container } from "./styles";
 
 import { cardService } from "../../services/cards";
 import { Icard } from "../../interfaces";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
+library.add(faStar);
+
 const Search: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [cards, setCards] = useState<Icard[]>([]);
@@ -12,10 +19,9 @@ const Search: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await cardService.search(cardName);      
-        console.log(response.data.data);        
-        setCards(response.data.data); 
-               
+        const response = await cardService.search(cardName);
+        console.log(response.data.data);
+        setCards(response.data.data);
       } catch (error) {
         console.log(error);
       }
@@ -46,12 +52,11 @@ const Search: React.FC = () => {
       <div className="grid">
         {cards.map((card) => (
           <figure key={card.id}>
+            <FontAwesomeIcon icon={faStar} />
             <picture>
-              {
-                card.card_images.map(image => (
-                  <img src={image.image_url} alt="" key={image.id}/>
-                ))
-              }
+              {card.card_images.map((image) => (
+                <img src={image.image_url} alt="" key={image.id} />
+              ))}
             </picture>
             <figcaption>
               <div>
