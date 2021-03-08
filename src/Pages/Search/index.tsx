@@ -51,19 +51,21 @@ const Search: React.FC = () => {
 
       <div className="grid">
         {cards.map((card) => (
-          <figure key={card.id}>
+          <div className="favorite-card">
             <FontAwesomeIcon icon={faStar} />
-            <picture>
-              {card.card_images.map((image) => (
-                <img src={image.image_url} alt="" key={image.id} />
-              ))}
-            </picture>
-            <figcaption>
-              <div>
-                <p>{card.desc}</p>
-              </div>
-            </figcaption>
-          </figure>
+            <figure key={card.id}>
+              <picture>
+                {card.card_images.map((image) => (
+                  <img src={image.image_url} alt="" key={image.id} />
+                ))}
+              </picture>
+              <figcaption>
+                <div>
+                  <p>{card.desc}</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
         ))}
       </div>
     </Container>
