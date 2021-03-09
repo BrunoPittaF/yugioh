@@ -15,12 +15,12 @@ const Search: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [cards, setCards] = useState<Icard[]>([]);
   const [cardName, setCardName] = useState<string>("");
+  const [favorite, setFavorite] = useState<boolean>(false);
 
   useEffect(() => {
     (async () => {
       try {
         const response = await cardService.search(cardName);
-        console.log(response.data.data);
         setCards(response.data.data);
       } catch (error) {
         console.log(error);
@@ -51,9 +51,13 @@ const Search: React.FC = () => {
 
       <div className="grid">
         {cards.map((card) => (
-          <div className="favorite-card">
-            <FontAwesomeIcon icon={faStar} />
-            <figure key={card.id}>
+          <div className="favorite-card" key={card.id}>
+            <FontAwesomeIcon
+              icon={faStar}
+              className={favorite ? "active" : ""}
+              onClick={() => setFavorite(!favorite)}
+            />
+            <figure>
               <picture>
                 {card.card_images.map((image) => (
                   <img src={image.image_url} alt="" key={image.id} />

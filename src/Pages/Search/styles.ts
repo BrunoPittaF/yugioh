@@ -32,6 +32,9 @@ export const Container = styled.div`
         align-self: flex-end;
         margin: 10px 0px;
         font-size: 1.5rem;
+        &.active {
+          color: red;
+        }
       }
       figure {
         position: relative;
