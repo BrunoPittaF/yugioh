@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, MouseEvent, useEffect, useState } from "react";
 
 import { Container } from "./styles";
 
@@ -10,6 +10,10 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 library.add(faStar);
+
+interface eventTeste {
+  target: MouseEvent;
+}
 
 const Search: React.FC = () => {
   const [search, setSearch] = useState<string>("");
@@ -37,6 +41,11 @@ const Search: React.FC = () => {
     }
   }
 
+  function teste(e: MouseEvent) {
+    console.log(((e.target as HTMLInputElement).style.color = "red"));
+    setFavorite(!favorite);
+  }
+
   return (
     <Container>
       <h1>Pesquise aqui as cartas do seu arquétipo</h1>
@@ -55,7 +64,7 @@ const Search: React.FC = () => {
             <FontAwesomeIcon
               icon={faStar}
               className={favorite ? "active" : ""}
-              onClick={() => setFavorite(!favorite)}
+              onClick={teste}
             />
             <figure>
               <picture>
