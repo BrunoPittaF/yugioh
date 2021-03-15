@@ -11,15 +11,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 
 library.add(faStar);
 
-interface eventTeste {
-  target: MouseEvent;
-}
-
 const Search: React.FC = () => {
   const [search, setSearch] = useState<string>("");
   const [cards, setCards] = useState<Icard[]>([]);
   const [cardName, setCardName] = useState<string>("");
-  const [favorite, setFavorite] = useState<boolean>(false);
+  const [favorite, setFavorite] = useState<boolean>(true);
 
   useEffect(() => {
     (async () => {
@@ -42,8 +38,15 @@ const Search: React.FC = () => {
   }
 
   function teste(e: MouseEvent) {
-    console.log(((e.target as HTMLInputElement).style.color = "red"));
+    let teste = e.currentTarget as HTMLElement;
+    console.log(favorite);
+    if (teste.style.color === "red") {
+      teste.style.color = "black";
+    } else {
+      teste.style.color = "red";
+    }
     setFavorite(!favorite);
+    console.log(favorite);
   }
 
   return (
@@ -63,7 +66,7 @@ const Search: React.FC = () => {
           <div className="favorite-card" key={card.id}>
             <FontAwesomeIcon
               icon={faStar}
-              className={favorite ? "active" : ""}
+              // className={favorite ? "active" : ""}
               onClick={teste}
             />
             <figure>
