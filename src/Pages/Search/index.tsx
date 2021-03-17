@@ -8,6 +8,7 @@ import { Icard } from "../../interfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import Cookies from "js-cookie";
 
 library.add(faStar);
 
@@ -16,7 +17,6 @@ const Search: React.FC = () => {
   const [cards, setCards] = useState<Icard[]>([]);
   const [cardName, setCardName] = useState<string>("");
   const [favorite, setFavorite] = useState<boolean>(true);
-
   useEffect(() => {
     (async () => {
       try {
@@ -37,16 +37,32 @@ const Search: React.FC = () => {
     }
   }
 
+  // function favoriteCard(e: MouseEvent) {
+  //   let color = e.currentTarget as HTMLElement;
+  //   if (favorite) {
+  //     color.style.color = "red";
+  //   } else {
+  //     color.style.color = "black";
+  //   }
+  //   setFavorite(!favorite);
+  // }
+
   function teste(e: MouseEvent) {
-    let teste = e.currentTarget as HTMLElement;
-    console.log(favorite);
-    if (teste.style.color === "red") {
-      teste.style.color = "black";
+    let figure = e.currentTarget as HTMLImageElement;
+    let color = e.currentTarget as HTMLElement;
+    let arrayCards = [];
+    let favoriteCard = figure.lastElementChild!.lastElementChild!.getAttribute(
+      "src"
+    );
+    if (favorite) {
+      color.style.color = "red";
+      arrayCards.push(favoriteCard);
+      Cookies.set("src", JSON.stringify(arrayCards));
     } else {
-      teste.style.color = "red";
+      color.style.color = "black";
+      Cookies.remove("src");
     }
     setFavorite(!favorite);
-    console.log(favorite);
   }
 
   return (
@@ -64,22 +80,13 @@ const Search: React.FC = () => {
       <div className="grid">
         {cards.map((card) => (
           <div className="favorite-card" key={card.id}>
-            <FontAwesomeIcon
-              icon={faStar}
-              // className={favorite ? "active" : ""}
-              onClick={teste}
-            />
-            <figure>
+            <figure onClick={teste}>
+              <FontAwesomeIcon icon={faStar} />
               <picture>
                 {card.card_images.map((image) => (
                   <img src={image.image_url} alt="" key={image.id} />
                 ))}
               </picture>
-              <figcaption>
-                <div>
-                  <p>{card.desc}</p>
-                </div>
-              </figcaption>
             </figure>
           </div>
         ))}
