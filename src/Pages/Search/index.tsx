@@ -17,6 +17,8 @@ const Search: React.FC = () => {
   const [cards, setCards] = useState<Icard[]>([]);
   const [cardName, setCardName] = useState<string>("");
   const [favorite, setFavorite] = useState<boolean>(true);
+  const [contador, setContador] = useState(0);
+
   useEffect(() => {
     (async () => {
       try {
@@ -50,14 +52,14 @@ const Search: React.FC = () => {
   function teste(e: MouseEvent) {
     let figure = e.currentTarget as HTMLImageElement;
     let color = e.currentTarget as HTMLElement;
-    let arrayCards = [];
     let favoriteCard = figure.lastElementChild!.lastElementChild!.getAttribute(
       "src"
     );
     if (favorite) {
       color.style.color = "red";
-      arrayCards.push(favoriteCard);
-      Cookies.set("src", JSON.stringify(arrayCards));
+      setContador(contador + 1);
+      console.log(contador);
+      Cookies.set(JSON.stringify(contador), JSON.stringify(favoriteCard));
     } else {
       color.style.color = "black";
       Cookies.remove("src");
