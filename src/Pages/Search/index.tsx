@@ -39,16 +39,6 @@ const Search: React.FC = () => {
     }
   }
 
-  // function favoriteCard(e: MouseEvent) {
-  //   let color = e.currentTarget as HTMLElement;
-  //   if (favorite) {
-  //     color.style.color = "red";
-  //   } else {
-  //     color.style.color = "black";
-  //   }
-  //   setFavorite(!favorite);
-  // }
-
   function teste(e: MouseEvent) {
     let figure = e.currentTarget as HTMLImageElement;
     let color = e.currentTarget as HTMLElement;
@@ -58,7 +48,6 @@ const Search: React.FC = () => {
     if (favorite) {
       color.style.color = "red";
       setContador(contador + 1);
-      console.log(contador);
       Cookies.set(JSON.stringify(contador), JSON.stringify(favoriteCard));
     } else {
       color.style.color = "black";
