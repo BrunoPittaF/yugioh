@@ -48,7 +48,11 @@ const Search: React.FC = () => {
     if (favorite) {
       color.style.color = "red";
       setContador(contador + 1);
-      Cookies.set(JSON.stringify(contador), JSON.stringify(favoriteCard));
+      // Cookies.set(JSON.stringify(contador), JSON.stringify(favoriteCard));
+      localStorage.setItem(
+        JSON.stringify(contador),
+        JSON.stringify(favoriteCard)
+      );
     } else {
       color.style.color = "black";
       Cookies.remove("src");
