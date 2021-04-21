@@ -8,7 +8,7 @@ import { Icard } from "../../interfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import Cookies from "js-cookie";
+import * as JsonArray from "../../db.json";
 
 library.add(faStar);
 
@@ -49,13 +49,8 @@ const Search: React.FC = () => {
       color.style.color = "red";
       setContador(contador + 1);
       // Cookies.set(JSON.stringify(contador), JSON.stringify(favoriteCard));
-      localStorage.setItem(
-        JSON.stringify(contador),
-        JSON.stringify(favoriteCard)
-      );
     } else {
       color.style.color = "black";
-      Cookies.remove("src");
     }
     setFavorite(!favorite);
   }
